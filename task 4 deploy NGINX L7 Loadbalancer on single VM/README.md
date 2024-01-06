@@ -9,7 +9,7 @@ Configuring an NGINX L7 Load Balancer using a single VM and deploying two servic
 
     ![image1](./image1.png)
 
-    _Description: Creating the Virtual Private Cloud_
+    _Description: Creating the VPC on AWS from dashboard_
 
 2. **Create Subnet**
 
@@ -33,7 +33,6 @@ Configuring an NGINX L7 Load Balancer using a single VM and deploying two servic
 
     ![image7](./image7.png)
 
-    ![image8](./image8.png)
 
     _Description: Setting up Routes_
 
@@ -45,12 +44,12 @@ Configuring an NGINX L7 Load Balancer using a single VM and deploying two servic
 
     _Description: Spinning Up an EC2 Instance_
 
-6. **Installing NGINX**
+6. **Install NGINX on EC2 Instance**
 
 7. **Install Node.js**
 
-8. **Create svc1 App**
-
+8. **Create svc1 and svc2 App**
+Need to repeat this for svc1 and svc2 app directory.
     ```
     sudo npm init
     npm i express
@@ -59,10 +58,10 @@ Configuring an NGINX L7 Load Balancer using a single VM and deploying two servic
 
     ![image11](./image11.png)
 
-    _Description: Creating and Running svc1 App_
+    _Description: Creating and Running svc1 and svc2 App_
 
 9. **Configure NGINX**
-
+    - nginx.conf file contains the configuration
     - Verify NGINX configuration:
 
         ```
@@ -77,6 +76,6 @@ Configuring an NGINX L7 Load Balancer using a single VM and deploying two servic
 
     - Edit host: `C:\Windows\System32\drivers\etc`
 
-    ![image12](./image12.png)
+    ![image8](./image8.png)
 
     _Description: Configuring NGINX for Load Balancing_
