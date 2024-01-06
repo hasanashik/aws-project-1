@@ -1,64 +1,82 @@
-Objective:
+# NGINX L7 Load Balancer Configuration and Service Deployment
 
--   Config NGINX L7 Load Balancer using single VM and deploy 2 services
-    names with api.poridhi.io and fr.poridhi.io
+**Objective:**
+Configuring an NGINX L7 Load Balancer using a single VM and deploying two services named `api.poridhi.io` and `fr.poridhi.io`.
 
-Steps:
+**Steps:**
 
-1.  Create VPC
+1. **Create VPC**
 
-![](./image1.png){width="6.5in" height="2.8868055555555556in"}
+    ![image1](./image1.png)
 
-2.  Create Subnet
+    _Description: Creating the Virtual Private Cloud_
 
-![](./image2.png){width="3.4753258967629046in"
-height="4.339330708661417in"}
+2. **Create Subnet**
 
-![](./image3.png){width="6.5in" height="1.95in"}
+    ![image2](./image2.png)
 
-3.  Create Internet Gateway and attach to the VPC
+    ![image3](./image3.png)
 
-![](./image4.png){width="6.5in" height="2.803472222222222in"}
+    _Description: Setting up the Subnet_
 
-4.  Add route 0.0.0.0
+3. **Create Internet Gateway and Attach to the VPC**
 
-![](./image5.png){width="6.5in" height="2.9430555555555555in"}
+    ![image4](./image4.png)
 
-![](./image6.png){width="6.5in" height="2.535416666666667in"}
-![](./image7.png){width="6.5in" height="3.0131944444444443in"}
+    _Description: Establishing Internet Gateway_
 
-![](./image8.png){width="3.978478783902012in"
-height="3.1028740157480317in"}
+4. **Add Route 0.0.0.0**
 
-5.  Create EC2 instance
+    ![image5](./image5.png)
 
-![](./image9.png){width="6.5in" height="3.136111111111111in"}
+    ![image6](./image6.png)
 
-![](./image10.png){width="6.5in" height="1.4701388888888889in"}
+    ![image7](./image7.png)
 
-6.  Installing Nginx
+    ![image8](./image8.png)
 
-7.  Install Nodejs
+    _Description: Setting up Routes_
 
-8.  Create svc1 app
+5. **Create EC2 Instance**
 
-Sudo npm init
+    ![image9](./image9.png)
 
-npm i express
+    ![image10](./image10.png)
 
-node server.js
+    _Description: Spinning Up an EC2 Instance_
 
-![](./image11.png){width="6.5in" height="2.654166666666667in"}
+6. **Installing NGINX**
 
-9.  Configure Nginx: when request will come from api.poridhi.io and same
-    ip, serve from svc1, and when come from fr.poridhi.io same ip,
-    response from svc2.
+7. **Install Node.js**
 
-nginx -t -c /etc/nginx/nginx.conf
+8. **Create svc1 App**
 
-nginx -s reload
+    ```
+    sudo npm init
+    npm i express
+    node server.js
+    ```
 
-Edit host: C:\\Windows\\System32\\drivers\\etc
+    ![image11](./image11.png)
 
-![](./image2.png){width="3.978478783902012in"
-height="3.1028740157480317in"}
+    _Description: Creating and Running svc1 App_
+
+9. **Configure NGINX**
+
+    - Verify NGINX configuration:
+
+        ```
+        nginx -t -c /etc/nginx/nginx.conf
+        ```
+
+    - Reload NGINX:
+
+        ```
+        nginx -s reload
+        ```
+
+    - Edit host: `C:\Windows\System32\drivers\etc`
+
+    ![image12](./image12.png)
+
+    _Description: Configuring NGINX for Load Balancing_
