@@ -1,44 +1,55 @@
-# Launch Kubernetes cluster using 3 VMs
+# Launch Kubernetes Cluster Using 3 VMs
 
-CLUSTER_NAME := zaman-cluster
+This guide demonstrates deploying a Kubernetes cluster using 3 VMs on AWS via a Makefile.
 
-AWS_REGION := us-east-1
+**Makefile Commands:**
 
-NODE_COUNT := 3
+- Define necessary variables:
+    ```makefile
+    CLUSTER_NAME := zaman-cluster
+    AWS_REGION := us-east-1
+    NODE_COUNT := 3
+    ```
 
-.PHONY: create-cluster
+- **Create Cluster:**
 
-create-cluster:
+    ```makefile
+    .PHONY: create-cluster
 
-    eksctl create cluster \\
+    create-cluster:
+        eksctl create cluster \
+            --name=$(CLUSTER_NAME) \
+            --region=$(AWS_REGION) \
+            --nodegroup-name=standard-workers \
+            --node-type=t3.medium \
+            --nodes=$(NODE_COUNT) \
+            --nodes-min=$(NODE_COUNT) \
+            --nodes-max=$(NODE_COUNT) \
+            --managed
+    ```
 
-        \--name=\$(CLUSTER_NAME) \\
+- **Delete Cluster:**
 
-        \--region=\$(AWS_REGION) \\
+    ```makefile
+    .PHONY: delete-cluster
 
-        \--nodegroup-name=standard-workers \\
+    delete-cluster:
+        eksctl delete cluster --name=$(CLUSTER_NAME) --region=$(AWS_REGION)
+    ```
 
-        \--node-type=t3.medium \\
+**To Run:**
+Run `make create-cluster` to create the Kubernetes cluster.
 
-        \--nodes=\$(NODE_COUNT) \\
+**Visual Guide:**
 
-        \--nodes-min=\$(NODE_COUNT) \\
+![image1](./image1.png)
 
-        \--nodes-max=\$(NODE_COUNT) \\
+_Description: Cluster Creation Command_
 
-        \--managed
+![image2](./image2.png)
 
-.PHONY: delete-cluster
+_Description: Cluster Configuration and Setup_
 
-delete-cluster:
+![image3](./image3.png)
 
-    eksctl delete cluster \--name=\$(CLUSTER_NAME)
-\--region=\$(AWS_REGION)
-
-To run: make create-cluster
-
-![](./image1.png){width="6.5in" height="3.165277777777778in"}
-
-![](./image2.png){width="6.5in" height="2.707638888888889in"}
-
-![](./image3.png){width="6.5in" height="3.035416666666667in"}
+_Description: Cluster Deployment and Management_
