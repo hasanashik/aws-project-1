@@ -1,36 +1,32 @@
-# We will Deploy 4 VMs on AWS using Makefile
+# Deploying 4 VMs on AWS using Makefile
 
 **To run the makefile:**
 
--   Define necessary variables:
+- Define necessary variables:
 
-AWS_PROFILE = default
+    ```makefile
+    AWS_PROFILE = default
+    REGION = us-east-1
+    INSTANCE_TYPE = t2.micro
+    AMI_ID := $(shell aws ec2 describe-images --owners amazon --filters "Name=architecture,Values=x86_64" "Name=root-device-type,Values=ebs" "Name=virtualization-type,Values=hvm" --query "Images[0].ImageId" --output text)
+    ```
 
-REGION = us-east-1
+- Create a key-pair
 
-INSTANCE_TYPE = t2.micro
+![image1](./image1.png)
 
-AMI_ID := \$(shell aws ec2 describe-images \--owners amazon \--filters
-\"Name=architecture,Values=x86_64\" \"Name=root-device-type,Values=ebs\"
-\"Name=virtualization-type,Values=hvm\" \--query \"Images\[0\].ImageId\"
-\--output text)
+- Copy the previously generated vpc.json file into this directory
 
--   Create key-pair
+- Get subnet ID and create VM-1
 
-![](./image1.png){width="6.5in" height="4.868055555555555in"}
+![image2](./image2.png)
 
--   Copy previous generated vpc.json file in this directory
+- Similarly create other VMs using:
 
--   Get subnet id and create VM-1
+    ```makefile
+    make create-instance-2
+    make create-instance-3
+    make create-instance-4
+    ```
 
-![](./image2.png){width="6.5in" height="5.904166666666667in"}
-
--   Similarly create other VMs
-
-make create-instance-2
-
-make create-instance-3
-
-make create-instance-4
-
-![](./image3.png){width="6.5in" height="1.8631944444444444in"}
+![image3](./image3.png)
