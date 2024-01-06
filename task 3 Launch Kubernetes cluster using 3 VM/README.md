@@ -48,8 +48,8 @@ _Description: Cluster Creation Command_
 
 ![image2](./image2.png)
 
-_Description: Cluster Configuration and Setup_
+_Description: Cluster Creation part 2_
 
 ![image3](./image3.png)
 
-_Description: Cluster Deployment and Management_
+_Description: Cluster Delete_
