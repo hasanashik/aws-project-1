@@ -1,0 +1,37 @@
+root@ip-172-31-30-57:/etc/nginx#  cat nginx.conf
+
+
+events {
+    worker_connections 1024; 
+}
+http {
+    upstream frontend {
+        server 127.0.0.1:3000;
+    }
+        upstream backend {
+        server 127.0.0.1:3001;
+    }
+
+    server {
+        listen 80;
+        server_name api.poridhi.io;
+        location / {
+            proxy_pass http://frontend;
+            proxy_redirect off;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+        server {
+        listen 80;
+        server_name fr.poridhi.io;
+        location / {
+            proxy_pass http://backend;
+            proxy_redirect off;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+}
