@@ -74,7 +74,8 @@ Need to repeat this for svc1 and svc2 app directory.
         nginx -s reload
         ```
 
-    - Edit host: `C:\Windows\System32\drivers\etc`
+10. **Edit host:**
+    - In the  `C:\Windows\System32\drivers\etc` directory open etc file in notepad and add two domains against single public ip like this. From terminal we can see that two domain response is coming using curl. 
 
     ![image8](./image8.png)
 
