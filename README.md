@@ -13,4 +13,10 @@
 - [ ] Setup NGINX L7 Load Balancer on a single VM.
 - [ ] Deploy services named "with api.poridhi.io" and "fr.poridhi.io", both will poing to single public ip.
 
+## Video demonstration
+ - Task 1,2,3: Deploy VPC, Subnet, IGW, 4VMs and Launch Kubernetes Cluster on AWS
+[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://youtu.be/ICh1KRff8Jw?si=OshvGnKrLKMGPXz7)
+
+ - Task 4: AWS NGINX L7 Load Balancer using single VM & deploying 2 services with single public IP
+[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://youtu.be/I_AU4lfWMzY?si=u50g83LCUNCXPON1)
 ---
